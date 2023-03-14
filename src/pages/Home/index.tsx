@@ -1,3 +1,4 @@
+import ContactMeSection from '../../components/ContactMeSection';
 import Footer from '../../components/Footer';
 import HomeMain from '../../components/HomeMain';
 import Navbar from '../../components/Navbar';
@@ -9,6 +10,7 @@ const Home = () => {
       <Navbar />
       <HomeMain />
       <ServicesSection />
+      <ContactMeSection />
       <Footer />
     </div>
   );
