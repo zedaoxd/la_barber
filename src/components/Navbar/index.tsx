@@ -1,4 +1,7 @@
 import logo from './../../assets/images/logo.png';
+import HomeIcon from '@mui/icons-material/Home';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import CallIcon from '@mui/icons-material/Call';
 import { Container, Header } from './styles';
 
 const Navbar = () => {
@@ -12,13 +15,22 @@ const Navbar = () => {
         <nav>
           <ul>
             <li>
-              <a href="#">Home</a>
+              <a href="#">
+                <HomeIcon />
+                Home
+              </a>
             </li>
             <li>
-              <a href="#">Serviços</a>
+              <a href="#">
+                <ShoppingBasketIcon />
+                Serviços
+              </a>
             </li>
             <li>
-              <a href="#">Contato</a>
+              <a href="#">
+                <CallIcon />
+                Contato
+              </a>
             </li>
           </ul>
         </nav>

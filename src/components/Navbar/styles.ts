@@ -42,6 +42,10 @@ export const Container = styled.div`
         color: #333;
 
         & a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
           text-decoration: none;
           color: #333;
           transition: font-weight 0.2s ease-in-out;
