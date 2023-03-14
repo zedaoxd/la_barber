@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Sono', sans-serif;
-        background-color: #181818;
+        background-color: #000;
         color: #e2e2e2;
     }
 
