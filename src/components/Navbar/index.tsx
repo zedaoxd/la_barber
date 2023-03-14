@@ -2,9 +2,16 @@ import logo from './../../assets/images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import CallIcon from '@mui/icons-material/Call';
-import { Container, Header } from './styles';
+import { Container, Header, MobileMenu, NavList } from './styles';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [showMenu, setShowMenu] = useState(false);
+
+  function handleMenu() {
+    setShowMenu(prev => !prev);
+  }
+
   return (
     <Header>
       <Container>
@@ -12,7 +19,13 @@ const Navbar = () => {
           <img src={logo} alt="" />
         </figure>
 
-        <nav>
+        <MobileMenu isMenuOpen={showMenu} onClick={handleMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </MobileMenu>
+
+        <NavList isMenuOpen={showMenu}>
           <ul>
             <li>
               <a href="#">
@@ -33,7 +46,7 @@ const Navbar = () => {
               </a>
             </li>
           </ul>
-        </nav>
+        </NavList>
       </Container>
     </Header>
   );
