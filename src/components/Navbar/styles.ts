@@ -100,6 +100,8 @@ export const NavList = styled.nav<NavProps>`
     }
 
     @media (max-width: 768px) {
+      border-bottom-left-radius: 10px;
+      box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
       position: absolute;
       top: 3vh;
       right: 0;
@@ -110,6 +112,8 @@ export const NavList = styled.nav<NavProps>`
       flex-direction: column;
       align-items: flex-start;
       justify-content: space-evenly;
+      transition: all 0.2s ease-in;
+      z-index: 1;
       transform: ${({ isMenuOpen }) => (isMenuOpen ? 'translateX(0)' : 'translateX(100%)')};
 
       & li {

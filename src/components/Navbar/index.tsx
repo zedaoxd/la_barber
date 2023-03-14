@@ -1,7 +1,8 @@
 import logo from './../../assets/images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import CallIcon from '@mui/icons-material/Call';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import PersonIcon from '@mui/icons-material/Person';
 import { Container, Header, MobileMenu, NavList } from './styles';
 import { useState } from 'react';
 
@@ -41,8 +42,14 @@ const Navbar = () => {
             </li>
             <li>
               <a href="#">
-                <CallIcon />
-                Contato
+                <EventAvailableIcon />
+                Agende
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <PersonIcon />
+                Entrar
               </a>
             </li>
           </ul>

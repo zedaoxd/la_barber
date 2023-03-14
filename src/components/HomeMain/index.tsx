@@ -1,9 +1,14 @@
-import { Container } from './styles';
+import logo from './../../assets/images/logo-white.png';
+import { Container, FigureContainer, Title } from './styles';
 
 const HomeMain = () => {
   return (
     <Container>
-      <h1>Home</h1>
+      <FigureContainer>
+        <img src={logo} alt="" />
+      </FigureContainer>
+
+      <Title>A melhor barbearia masculina da região</Title>
     </Container>
   );
 };
