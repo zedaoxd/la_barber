@@ -8,28 +8,28 @@ export const BackgroundContainer = styled.section`
 
 export const Container = styled.section`
   max-width: 1200px;
-  height: 100vh;
   margin: 0 auto;
+  padding-bottom: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
+
+  h1 {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-family: 'Neonderthaw', cursive;
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
 
-export const FigureContainer = styled.figure`
-  width: 50%;
-
-  img {
-    width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
+export const FormFigureContainer = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
 export const FormContainer = styled.form`
@@ -46,6 +46,7 @@ export const FormContainer = styled.form`
   box-shadow: 0 0 10px rgba(0, 0, 255, 1);
 
   h1 {
+    font-family: 'Sono', sans-serif;
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #000;
@@ -106,13 +107,24 @@ export const FormContainer = styled.form`
 
   @media (max-width: 768px) {
     margin-top: 3rem;
-    max-width: 100%;
+    max-width: 90%;
     padding: 1rem;
   }
 `;
 
+export const FigureContainer = styled.figure`
+  width: 50%;
+
+  img {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
 export const MapContainer = styled.div`
-  display: none;
   margin: 0 auto;
   margin-top: 2rem;
   background-color: #fff;
@@ -128,13 +140,14 @@ export const MapContainer = styled.div`
   }
 
   iframe {
-    height: 400px;
+    height: 300px;
     border: 0;
   }
 
   @media (max-width: 768px) {
+    width: 90%;
     display: block;
-    margin: 2rem 0;
+    margin: 2rem auto;
 
     iframe {
       height: 300px;

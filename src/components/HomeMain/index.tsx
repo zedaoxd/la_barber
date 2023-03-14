@@ -3,7 +3,7 @@ import { BackgroundContainer, Container, FigureContainer, Title } from './styles
 
 const HomeMain = () => {
   return (
-    <BackgroundContainer>
+    <BackgroundContainer id="home-section">
       <Container>
         <FigureContainer>
           <img src={logo} alt="" />

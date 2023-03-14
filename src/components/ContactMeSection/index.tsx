@@ -1,22 +1,33 @@
 import React from 'react';
-import { BackgroundContainer, Container, FigureContainer, FormContainer, MapContainer } from './styles';
+import {
+  BackgroundContainer,
+  Container,
+  FigureContainer,
+  FormContainer,
+  MapContainer,
+  FormFigureContainer,
+} from './styles';
 
 const ContactMeSection = () => {
   return (
     <BackgroundContainer>
       <Container>
-        <FigureContainer>
-          <img src="src/assets/images/contact-02.svg" alt="Contato" />
-        </FigureContainer>
-        <FormContainer>
-          <h1>Contato</h1>
-          <form>
-            <input type="text" placeholder="Nome" />
-            <input type="email" placeholder="E-mail" />
-            <textarea placeholder="Mensagem" />
-            <button type="submit">Enviar</button>
-          </form>
-        </FormContainer>
+        <h1>Entre em contato</h1>
+        <FormFigureContainer>
+          <FormContainer>
+            <h1>Contato</h1>
+            <form>
+              <input type="text" placeholder="Nome" />
+              <input type="email" placeholder="E-mail" />
+              <textarea placeholder="Mensagem" />
+              <button type="submit">Enviar</button>
+            </form>
+          </FormContainer>
+
+          <FigureContainer>
+            <img src="src/assets/images/contact-02.svg" alt="Contato" />
+          </FigureContainer>
+        </FormFigureContainer>
 
         <MapContainer>
           <h2>Como Chegar</h2>

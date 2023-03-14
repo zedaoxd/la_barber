@@ -25,10 +25,14 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 3rem;
+  font-size: 5rem;
   color: #fff;
   margin: 2rem 0;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 export const GridServices = styled.div`

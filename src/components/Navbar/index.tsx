@@ -29,13 +29,13 @@ const Navbar = () => {
         <NavList isMenuOpen={showMenu}>
           <ul>
             <li>
-              <a href="#">
+              <a href="/">
                 <HomeIcon />
                 Home
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="#services-section">
                 <ShoppingBasketIcon />
                 Serviços
               </a>
