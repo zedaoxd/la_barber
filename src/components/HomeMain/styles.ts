@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
-  height: 100vh;
-  width: 100%;
-  max-width: 1200px;
+export const BackgroundContainer = styled.section`
   background-image: url('src/assets/images/bg-home.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+`;
+
+export const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;

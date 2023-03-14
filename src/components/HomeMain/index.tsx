@@ -1,15 +1,17 @@
 import logo from './../../assets/images/logo-white.png';
-import { Container, FigureContainer, Title } from './styles';
+import { BackgroundContainer, Container, FigureContainer, Title } from './styles';
 
 const HomeMain = () => {
   return (
-    <Container>
-      <FigureContainer>
-        <img src={logo} alt="" />
-      </FigureContainer>
+    <BackgroundContainer>
+      <Container>
+        <FigureContainer>
+          <img src={logo} alt="" />
+        </FigureContainer>
 
-      <Title>A melhor barbearia masculina da região</Title>
-    </Container>
+        <Title>A melhor barbearia masculina da região</Title>
+      </Container>
+    </BackgroundContainer>
   );
 };
 
