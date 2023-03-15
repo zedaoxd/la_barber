@@ -5,6 +5,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import PersonIcon from '@mui/icons-material/Person';
 import { Container, Header, MobileMenu, NavList } from './styles';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -29,13 +30,13 @@ const Navbar = () => {
         <NavList isMenuOpen={showMenu}>
           <ul>
             <li>
-              <a href="/">
+              <NavLink to={'/'}>
                 <HomeIcon />
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#services-section">
+              <a href="/#services-section">
                 <ShoppingBasketIcon />
                 Serviços
               </a>
@@ -47,10 +48,10 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <NavLink to="/login">
                 <PersonIcon />
                 Entrar
-              </a>
+              </NavLink>
             </li>
           </ul>
         </NavList>

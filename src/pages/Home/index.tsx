@@ -6,13 +6,11 @@ import ServicesSection from '../../components/ServicesSection';
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
+    <>
       <HomeMain />
       <ServicesSection />
       <ContactMeSection />
-      <Footer />
-    </div>
+    </>
   );
 };
 
