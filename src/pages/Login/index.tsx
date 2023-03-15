@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
@@ -16,6 +17,10 @@ const Login = () => {
     register,
     formState: { errors },
   } = useForm<IFormLoginInputs>({});
+
+  useEffect(() => {
+    document.title = 'La Barber | Auth';
+  }, []);
 
   async function handleLogin({ email, password }: IFormLoginInputs) {
     try {

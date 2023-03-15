@@ -2,6 +2,12 @@ import styled from 'styled-components';
 
 export const Background = styled.div`
   background-color: #f0f0f5;
+  background-image: url('src/assets/images/bg-auth.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
 `;
 
 export const Container = styled.div`
