@@ -17,6 +17,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   color: #000;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ContainerProfile = styled.div`
@@ -33,6 +37,11 @@ export const ContainerProfile = styled.div`
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
 
   @media (max-width: 768px) {
+    width: 95%;
     margin: 0 1rem;
+  }
+
+  @media (max-width: 425px) {
+    margin: 0 0.5rem;
   }
 `;

@@ -2,7 +2,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import { ContainerAvatar, SideBar } from './styles';
 
 const SideBarProfile = () => {
@@ -38,6 +38,7 @@ const SideBarProfile = () => {
             </a>
           </li>
         </ul>
+
         <button onClick={handleLogout}>
           <LogoutIcon />
           Sair

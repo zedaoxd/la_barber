@@ -10,6 +10,10 @@ export function getUserLocalStorage() {
   return user ? JSON.parse(user) ?? null : null;
 }
 
+export function removeUserLocalStorage() {
+  localStorage.removeItem('u');
+}
+
 export async function LoginRequest(email: string, password: string) {
   try {
     const request = await Api.post('/login', { email, password });

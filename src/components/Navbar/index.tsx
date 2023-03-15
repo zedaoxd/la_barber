@@ -5,11 +5,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Container, Header, MobileMenu, NavList } from './styles';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { email } = useAuth();
+  const { user } = useAuth();
 
   function handleMenu() {
     setShowMenu(prev => !prev);
@@ -43,9 +43,9 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <NavLink to={email ? '/profile' : '/login'}>
+              <NavLink to={user?.email ? '/profile' : '/login'}>
                 <PersonIcon />
-                {email ? email : 'Login'}
+                {user?.email ? user?.email : 'Login'}
               </NavLink>
             </li>
           </ul>

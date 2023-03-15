@@ -3,7 +3,8 @@ export interface IUser {
   token?: string;
 }
 
-export interface IContext extends IUser {
+export interface IContext {
+  user: IUser | undefined;
   authenticate: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
