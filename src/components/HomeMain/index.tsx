@@ -1,5 +1,5 @@
 import logo from './../../assets/images/logo-white.png';
-import { BackgroundContainer, Container, FigureContainer, Title } from './styles';
+import { BackgroundContainer, Button, Container, FigureContainer, Title } from './styles';
 
 const HomeMain = () => {
   return (
@@ -10,6 +10,7 @@ const HomeMain = () => {
         </FigureContainer>
 
         <Title>A melhor barbearia masculina da região</Title>
+        <Button>Agende um serviço</Button>
       </Container>
     </BackgroundContainer>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const BackgroundContainer = styled.section`
+export const BackgroundContainer = styled.div`
   width: 100%;
   background: #000;
   background-image: url('src/assets/images/bg-services.jpg');
@@ -24,6 +24,10 @@ export const Container = styled.section`
 
   @media (max-width: 768px) {
     flex-direction: column;
+
+    h1 {
+      font-size: 3rem;
+    }
   }
 `;
 
