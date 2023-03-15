@@ -1,7 +1,6 @@
 import logo from './../../assets/images/logo.png';
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import PersonIcon from '@mui/icons-material/Person';
 import { Container, Header, MobileMenu, NavList } from './styles';
 import { useState } from 'react';
@@ -41,12 +40,6 @@ const Navbar = () => {
               <a href="/#services-section">
                 <ShoppingBasketIcon />
                 Serviços
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <EventAvailableIcon />
-                Agende
               </a>
             </li>
             <li>

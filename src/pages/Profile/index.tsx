@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { Container } from './styles';
+import { Outlet } from 'react-router-dom';
+import SideBarProfile from '../../components/SideBarProfile';
+import { Background, Container, ContainerProfile } from './styles';
 
 const Profile = () => {
   useEffect(() => {
@@ -7,9 +9,14 @@ const Profile = () => {
   }, []);
 
   return (
-    <Container>
-      <h1>Profile</h1>
-    </Container>
+    <Background>
+      <Container>
+        <SideBarProfile />
+        <ContainerProfile>
+          <Outlet />
+        </ContainerProfile>
+      </Container>
+    </Background>
   );
 };
 
