@@ -7,7 +7,7 @@ export function setUserLocalStorage(user: IUser | null) {
 
 export function getUserLocalStorage() {
   const user = localStorage.getItem('u');
-  return user ? JSON.parse(user) ?? null : null;
+  return user ? JSON.parse(user) : null;
 }
 
 export async function LoginRequest(email: string, password: string) {

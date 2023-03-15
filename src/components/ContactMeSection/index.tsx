@@ -16,12 +16,10 @@ const ContactMeSection = () => {
         <FormFigureContainer>
           <FormContainer>
             <h1>Contato</h1>
-            <form>
-              <input type="text" placeholder="Nome" />
-              <input type="email" placeholder="E-mail" />
-              <textarea placeholder="Mensagem" />
-              <button type="submit">Enviar</button>
-            </form>
+            <input type="text" placeholder="Nome" />
+            <input type="email" placeholder="E-mail" />
+            <textarea placeholder="Mensagem" />
+            <button type="submit">Enviar</button>
           </FormContainer>
 
           <FigureContainer>

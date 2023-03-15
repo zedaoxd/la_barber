@@ -2,9 +2,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 const PrivateRoute = () => {
-  const auth = useAuth();
+  const { email } = useAuth();
 
-  if (!auth.email) {
+  if (!email) {
     return <Navigate to="/login" />;
   }
 

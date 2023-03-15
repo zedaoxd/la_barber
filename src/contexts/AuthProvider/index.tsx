@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   useEffect(() => {
     const user = getUserLocalStorage();
 
+    console.log('user useEffectAuthProvider', user);
+
     if (user) {
       setUser(user);
     }
@@ -20,8 +22,9 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
     const paylod = { token: response.token, email };
 
-    setUserLocalStorage(paylod);
     setUser(paylod);
+    console.log('user salvo', user);
+    setUserLocalStorage(paylod);
   }
 
   function logout() {

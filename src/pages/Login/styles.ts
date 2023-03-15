@@ -13,6 +13,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
+  span {
+    color: #f90909;
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
     height: 100%;
