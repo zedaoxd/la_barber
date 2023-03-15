@@ -54,6 +54,8 @@ export const FormContainer = styled.form`
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
   }
 
   p {
@@ -141,6 +143,8 @@ export const MapContainer = styled.div`
     margin-bottom: 1rem;
     color: #000;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
   }
 
   iframe {

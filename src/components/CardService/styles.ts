@@ -19,6 +19,11 @@ export const Container = styled.section`
     transform: translateY(-0.5rem);
     box-shadow: 0 0 1rem rgba(255, 255, 255, 0.6);
   }
+
+  &:hover img {
+    transition: all 0.4s;
+    transform: scale(1.1);
+  }
 `;
 
 export const Title = styled.h2`
