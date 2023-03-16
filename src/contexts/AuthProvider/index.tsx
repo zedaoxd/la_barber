@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     const user = getUserLocalStorage();
 
     if (user) {
-      console.log('Auth Provider => ', user);
       setUser(user);
     }
   }, []);
