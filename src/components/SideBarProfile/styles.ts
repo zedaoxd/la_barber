@@ -8,7 +8,7 @@ export const SideBar = styled.aside`
   width: 100%;
   max-width: 360px;
   height: 100%;
-  background: #ccc;
+  background: #f5f5f5;
   box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.1);
 
   nav {
@@ -35,7 +35,7 @@ export const SideBar = styled.aside`
         justify-content: center;
         width: 100%;
         height: 60px;
-        background: #fff;
+        background: #ddd;
         margin-bottom: 8px;
         padding: 0 16px;
         text-decoration: none;

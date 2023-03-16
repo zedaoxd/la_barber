@@ -2,7 +2,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Container, GridHours, HourSelected, Form } from './styles';
+import { Container, GridHours, HourSelected, Form, ButtonConfirm, Wanings } from './styles';
 import { useState } from 'react';
 
 type AppointmentSelectForm = {
@@ -68,6 +68,40 @@ const Appointment = () => {
           render={({ field }) => (
             <Select
               {...field}
+              styles={{
+                control: (provided, state) => ({
+                  ...provided,
+                  border: 'none',
+                  borderRadius: '4px',
+                  height: '40px',
+                  padding: '0 10px',
+                  fontSize: '16px',
+                  color: '#666',
+                  '&:hover': {
+                    borderColor: 'none',
+                  },
+                }),
+                placeholder: (provided, state) => ({
+                  ...provided,
+                  color: '#999',
+                }),
+                singleValue: (provided, state) => ({
+                  ...provided,
+                  color: '#666',
+                }),
+                menu: (provided, state) => ({
+                  ...provided,
+                  zIndex: 999,
+                }),
+                option: (provided, state) => ({
+                  ...provided,
+                  color: '#666',
+                  backgroundColor: state.isSelected ? '#eee' : '#fff',
+                  '&:hover': {
+                    backgroundColor: '#eee',
+                  },
+                }),
+              }}
               options={employees}
               classNamePrefix="select-employee"
               //onChange={value => setValue('employee', value as Employee)}
@@ -88,6 +122,7 @@ const Appointment = () => {
                 {...field}
                 selected={field.value ? new Date(field.value) : null}
                 value={field.value ? new Date(field.value).toLocaleDateString() : ''}
+                wrapperClassName="date-picker"
                 minDate={new Date()}
                 maxDate={sevenDaysFromNow}
                 onChange={(d: Date) => setValue('date', d.getTime())}
@@ -120,12 +155,18 @@ const Appointment = () => {
           </>
         )}
 
-        {watch('time') && <button type="submit">Confirmar</button>}
+        {watch('time') && (
+          <>
+            <Wanings>
+              <p>
+                Atrasos de 5 minutos será considerado como falta e poderá ser impedido de marcar
+                novos serviços no futuro
+              </p>
+            </Wanings>
+            <ButtonConfirm type="submit">Confirmar</ButtonConfirm>
+          </>
+        )}
       </Form>
-      <p>
-        Atrasos de 5 minutos será considerado como falta e poderá ser impedido de marcar novos
-        serviços no futuro
-      </p>
     </Container>
   );
 };

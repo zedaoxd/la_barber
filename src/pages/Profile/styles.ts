@@ -6,6 +6,10 @@ export const Background = styled.div`
   background-color: #f0f0f5;
   background-image: url('src/assets/images/bg-services.jpg');
   background-repeat: repeat;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 export const Container = styled.div`
@@ -20,13 +24,14 @@ export const Container = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    height: auto;
   }
 `;
 
 export const ContainerProfile = styled.div`
   width: 100%;
   height: 95%;
-  background-color: #ccc;
+  background: #fff;
   color: #000;
   padding: 2rem;
   margin-top: 0;
@@ -39,6 +44,7 @@ export const ContainerProfile = styled.div`
   @media (max-width: 768px) {
     width: 95%;
     margin: 0 1rem;
+    height: auto;
   }
 
   @media (max-width: 425px) {

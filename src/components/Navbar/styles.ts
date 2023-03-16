@@ -48,7 +48,8 @@ export const MobileMenu = styled.div<NavProps>`
   }
 
   & div:nth-child(1) {
-    transform: ${({ isMenuOpen }) => (isMenuOpen ? 'rotate(-45deg) translate(-8px, 8px)' : 'rotate(0)')};
+    transform: ${({ isMenuOpen }) =>
+      isMenuOpen ? 'rotate(-45deg) translate(-8px, 8px)' : 'rotate(0)'};
   }
 
   & div:nth-child(2) {
@@ -56,7 +57,8 @@ export const MobileMenu = styled.div<NavProps>`
   }
 
   & div:nth-child(3) {
-    transform: ${({ isMenuOpen }) => (isMenuOpen ? 'rotate(45deg) translate(-6px, -7px)' : 'rotate(0)')};
+    transform: ${({ isMenuOpen }) =>
+      isMenuOpen ? 'rotate(45deg) translate(-6px, -7px)' : 'rotate(0)'};
   }
 
   @media (max-width: 768px) {
