@@ -4,7 +4,7 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import PersonIcon from '@mui/icons-material/Person';
 import { Container, Header, MobileMenu, NavList } from './styles';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
@@ -19,7 +19,9 @@ const Navbar = () => {
     <Header>
       <Container>
         <figure>
-          <img src={logo} alt="" />
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
         </figure>
 
         <MobileMenu isMenuOpen={showMenu} onClick={handleMenu}>
