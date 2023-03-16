@@ -1,6 +1,7 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { ContainerAvatar, SideBar } from './styles';
@@ -26,16 +27,16 @@ const SideBarProfile = () => {
       <nav>
         <ul>
           <li>
-            <a href="/">
+            <NavLink to="/profile/appointment">
               <AccessTimeIcon />
               Agende um hórario
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/">
+            <NavLink to="/profile/myschedule">
               <AccessTimeFilledIcon />
               Meus horários
-            </a>
+            </NavLink>
           </li>
         </ul>
 
