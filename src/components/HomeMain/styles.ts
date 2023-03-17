@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BackgroundContainer = styled.section`
-  background-image: url('src/assets/images/bg-home.jpg');
+  background-image: url('/images/bg-home.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,7 +57,8 @@ export const Button = styled.button`
 
   &:hover {
     transition-delay: 0s, 1s;
-    box-shadow: 0 0 10px #78502d, 0 0 20px #78502d, 0 0 40px #78502d, 0 0 80px #78502d, 0 0 160px #78502d;
+    box-shadow: 0 0 10px #78502d, 0 0 20px #78502d, 0 0 40px #78502d, 0 0 80px #78502d,
+      0 0 160px #78502d;
   }
 
   &::before {

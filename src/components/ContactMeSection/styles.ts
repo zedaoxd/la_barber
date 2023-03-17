@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BackgroundContainer = styled.div`
   width: 100%;
   background: #000;
-  background-image: url('src/assets/images/bg-services.jpg');
+  background-image: url('/images/bg-services.jpg');
 `;
 
 export const Container = styled.section`

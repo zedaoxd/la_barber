@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import logo from './../../assets/images/logo-white.png';
 import { BackgroundContainer, Button, Container, FigureContainer, Title } from './styles';
 
@@ -10,7 +11,9 @@ const HomeMain = () => {
         </FigureContainer>
 
         <Title>A melhor barbearia masculina da região</Title>
-        <Button>Agende um serviço</Button>
+        <Link to="/profile/appointment">
+          <Button>Agende um serviço</Button>
+        </Link>
       </Container>
     </BackgroundContainer>
   );

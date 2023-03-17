@@ -4,7 +4,7 @@ export const Background = styled.div`
   height: 94vh;
   width: 100%;
   background-color: #f0f0f5;
-  background-image: url('public/images/bg-services.jpg');
+  background-image: url('/images/bg-services.jpg');
   background-repeat: repeat;
 
   @media (max-width: 768px) {

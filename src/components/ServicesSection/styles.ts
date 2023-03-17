@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BackgroundContainer = styled.section`
-  background-image: url('src/assets/images/bg-services.jpg');
+  background-image: url('/images/bg-services.jpg');
   background-repeat: repeat;
 `;
 
