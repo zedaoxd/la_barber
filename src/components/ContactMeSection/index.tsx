@@ -23,7 +23,7 @@ const ContactMeSection = () => {
           </FormContainer>
 
           <FigureContainer>
-            <img src="src/assets/images/contact-02.svg" alt="Contato" />
+            <img src="/images/contact-02.svg" alt="Contato" />
           </FigureContainer>
         </FormFigureContainer>
 
