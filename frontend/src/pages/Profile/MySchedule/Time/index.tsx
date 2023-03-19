@@ -6,13 +6,18 @@ import { Container, DeleteButton, LeftContainer, RightContainer } from './styles
 import swal from 'sweetalert';
 
 type TimeProps = {
-  date: string;
-  time: string;
-  type: string;
-  status: string;
+  date?: string;
+  time?: string;
+  type?: string;
+  status?: string;
 };
 
-const Time = ({ date = '', time = '', type = '', status = '' }: TimeProps) => {
+const Time = ({
+  date = '28/04/2023',
+  time = '10:00',
+  type = 'Corte e Barba',
+  status = 'Agendado',
+}: TimeProps) => {
   const onClickDelete = () => {
     swal({
       title: 'Tem certeza que deseja cancelar o agendamento?',
@@ -28,21 +33,21 @@ const Time = ({ date = '', time = '', type = '', status = '' }: TimeProps) => {
   return (
     <Container status={status}>
       <LeftContainer>
-        <p>Dia: {date ? date : '28/04/2023'}</p>
+        <p>Dia: {date}</p>
         <p>
           Horário:
           <span>
             <>
               <AccessTimeIcon />
-              {time ? time : '10:00'}
+              {time}
             </>
           </span>
         </p>
       </LeftContainer>
       <RightContainer>
-        <p>Tipo: {type ? type : 'Corte e Barba'}</p>
+        <p>Tipo: {type}</p>
         <p>
-          Situação: <Status status={status ? status : 'Agendado'} />
+          Situação: <Status status={status} />
         </p>
       </RightContainer>
 

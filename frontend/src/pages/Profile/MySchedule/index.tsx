@@ -24,13 +24,20 @@ const MySchedule = () => {
       type: 'Corte',
       status: 'Falta',
     },
+    {
+      id: 3,
+      date: '01/03/2023',
+      time: '19:00',
+      type: 'Corte',
+      status: 'Cancelado',
+    },
   ];
 
   return (
     <Container>
       <Appointment>
         <h2>Horário marcado</h2>
-        <Time date="" status="Agendado" time="" type="" />
+        <Time status="Agendado" />
       </Appointment>
 
       <AppointmentList>
