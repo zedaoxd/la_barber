@@ -47,7 +47,6 @@ export const FormContainer = styled.form`
   padding: 2rem;
   background: #fff;
   border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 255, 1);
 
   h1 {
     font-family: 'Sono', sans-serif;

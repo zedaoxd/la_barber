@@ -1,16 +1,23 @@
 import styled from 'styled-components';
 
+export const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background: #000;
+  background-image: url('/images/bg-services.jpg');
+`;
+
 export const Container = styled.footer`
   width: 100%;
   max-width: 1200px;
   height: 30vh;
-  background: #000;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4rem 2rem;
   color: #fff;
+  background: #00000090;
 
   @media (max-width: 768px) {
     flex-direction: column;

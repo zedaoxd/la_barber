@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Background = styled.div`
   background-color: #f0f0f5;
-  background-image: url('/images/bg-auth.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
