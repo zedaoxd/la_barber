@@ -12,6 +12,7 @@ import br.com.bruno.labarber.dtos.UserLoginDTO;
 import br.com.bruno.labarber.dtos.AuthenticationResponseDTO;
 import br.com.bruno.labarber.dtos.UserInsertDTO;
 import br.com.bruno.labarber.entities.User;
+import br.com.bruno.labarber.enums.TypeUser;
 import br.com.bruno.labarber.repositories.RoleRepository;
 import br.com.bruno.labarber.repositories.UserRepository;
 
@@ -37,6 +38,7 @@ public class AuthenticationService {
         User user = userInsertDTO.toUser();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of(roleRepository.findByName("ROLE_USER")));
+        user.setType(TypeUser.CLIENT);
         user = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return new AuthenticationResponseDTO(jwtToken, user.getId());

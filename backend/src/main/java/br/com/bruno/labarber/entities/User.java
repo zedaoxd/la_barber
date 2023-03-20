@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.bruno.labarber.enums.TypeUser;
 import jakarta.persistence.*;
 
 @Entity(name = "users")
@@ -22,6 +23,9 @@ public class User implements UserDetails {
     private String email;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private TypeUser type;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -68,6 +72,14 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public TypeUser getType() {
+        return type;
+    }
+
+    public void setType(TypeUser type) {
+        this.type = type;
     }
 
     public List<Role> getRoles() {
