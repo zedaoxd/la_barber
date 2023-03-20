@@ -1,5 +1,9 @@
 server:
   port: 8080
+jwt:
+  duration: 86400000
+  secret:
+    key: 527791321867ba44e499db3b6797d910911b48d8fce08d21902bd7092192a942
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
