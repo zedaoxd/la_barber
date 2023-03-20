@@ -33,6 +33,12 @@ public class User implements UserDetails {
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "client")
+    private List<Appointment> appointmentsClient = new ArrayList<>();
+
+    @OneToMany(mappedBy = "barber")
+    private List<Appointment> appointmentsBarber = new ArrayList<>();
+
     public User() {
     }
 
@@ -88,6 +94,22 @@ public class User implements UserDetails {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Appointment> getAppointmentsClient() {
+        return appointmentsClient;
+    }
+
+    public void setAppointmentsClient(List<Appointment> appointmentsClient) {
+        this.appointmentsClient = appointmentsClient;
+    }
+
+    public List<Appointment> getAppointmentsBarber() {
+        return appointmentsBarber;
+    }
+
+    public void setAppointmentsBarber(List<Appointment> appointmentsBarber) {
+        this.appointmentsBarber = appointmentsBarber;
     }
 
     @Override

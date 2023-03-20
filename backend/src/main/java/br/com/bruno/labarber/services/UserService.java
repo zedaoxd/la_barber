@@ -1,6 +1,7 @@
 package br.com.bruno.labarber.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,10 @@ public class UserService implements UserDetailsService {
     public User loadUserByUsername(String username) {
         return userRepository.findByEmail(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    public User getAuthenticatedUser() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return loadUserByUsername(email);
     }
 }
