@@ -13,6 +13,7 @@ import br.com.bruno.labarber.dtos.AuthenticationResponseDTO;
 import br.com.bruno.labarber.dtos.UserInsertDTO;
 import br.com.bruno.labarber.dtos.UserLoginDTO;
 import br.com.bruno.labarber.services.AuthenticationService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/auth")
@@ -27,7 +28,7 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<AuthenticationResponseDTO> register(@RequestBody UserInsertDTO userInsertDTO) {
+    public ResponseEntity<AuthenticationResponseDTO> register(@Valid @RequestBody UserInsertDTO userInsertDTO) {
         var user = authenticationService.register(userInsertDTO);
         URI uri = URI.create("/users/" + user.getId());
         return ResponseEntity.created(uri).body(user);

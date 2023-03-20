@@ -1,11 +1,17 @@
 package br.com.bruno.labarber.dtos;
 
 import br.com.bruno.labarber.entities.User;
+import br.com.bruno.labarber.validations.UserInsertValid;
+import jakarta.validation.constraints.NotBlank;
 
+@UserInsertValid
 public class UserInsertDTO {
     
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Email is required")
     private String email;
+    @NotBlank(message = "Password is required")
     private String password;
 
     public UserInsertDTO() {
