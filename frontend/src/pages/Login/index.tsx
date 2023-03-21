@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import FormSignup from './components/FormSignup';
 import { Background, Container, ContainerLogin, ContainerSignup } from './styles';
 
 interface IFormLoginInputs {
@@ -72,16 +73,7 @@ const Login = () => {
           </div>
         </ContainerLogin>
         <ContainerSignup>
-          <div>
-            <h1>Cadastre-se</h1>
-            <form>
-              <input type="text" placeholder="Nome" />
-              <input type="text" placeholder="Email" />
-              <input type="password" placeholder="Senha" />
-              <input type="password" placeholder="Confirme sua senha" />
-              <button type="submit">Cadastrar</button>
-            </form>
-          </div>
+          <FormSignup />
         </ContainerSignup>
       </Container>
     </Background>

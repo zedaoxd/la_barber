@@ -16,9 +16,18 @@ export function removeUserLocalStorage() {
 
 export async function LoginRequest(email: string, password: string) {
   try {
-    const request = await Api.post('/login', { email, password });
+    const request = await Api.post('/auth/login', { email, password });
     return request.data;
   } catch (e) {
     return null;
+  }
+}
+
+export async function RegisterRequest(name: string, email: string, password: string) {
+  try {
+    const request = await Api.post('/auth/register', { name, email, password });
+    return request;
+  } catch (e: any) {
+    return e.response.data;
   }
 }

@@ -3,6 +3,7 @@ import { IAuthProvider, IContext, IUser } from './types';
 import {
   getUserLocalStorage,
   LoginRequest,
+  RegisterRequest,
   removeUserLocalStorage,
   setUserLocalStorage,
 } from './util';
@@ -21,12 +22,15 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }, []);
 
   async function authenticate(email: string, password: string) {
-    const response = await LoginRequest(email, password);
+    const data = await LoginRequest(email, password);
 
-    const paylod = { token: response.token, email };
+    setUser(data);
+    setUserLocalStorage(data);
+  }
 
-    setUser(paylod);
-    setUserLocalStorage(paylod);
+  async function signup(name: string, email: string, password: string) {
+    const response = await RegisterRequest(name, email, password);
+    return response;
   }
 
   function logout() {
@@ -35,6 +39,8 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, authenticate, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, authenticate, logout, signup }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
