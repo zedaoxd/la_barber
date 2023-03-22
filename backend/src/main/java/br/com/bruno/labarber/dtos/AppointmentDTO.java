@@ -4,6 +4,7 @@ import java.util.Date;
 
 import br.com.bruno.labarber.entities.Appointment;
 import br.com.bruno.labarber.entities.User;
+import br.com.bruno.labarber.enums.StatusAppointment;
 import br.com.bruno.labarber.enums.TypeAppointment;
 
 public class AppointmentDTO {
@@ -13,16 +14,18 @@ public class AppointmentDTO {
     private Long barberId;
     private Long clientId;
     private String typeAppointment;
+    private String statusAppointment;
 
     public AppointmentDTO() {
     }
 
-    public AppointmentDTO(Long id, Long millis, Long barberId, Long clientId, String typeAppointment) {
+    public AppointmentDTO(Long id, Long millis, Long barberId, Long clientId, String typeAppointment, String statusAppointment) {
         this.id = id;
         this.millis = millis;
         this.barberId = barberId;
         this.clientId = clientId;
         this.typeAppointment = typeAppointment;
+        this.statusAppointment = statusAppointment;
     }
 
     public AppointmentDTO(Appointment entity) {
@@ -31,6 +34,7 @@ public class AppointmentDTO {
         this.barberId = entity.getBarber().getId();
         this.clientId = entity.getClient().getId();
         this.typeAppointment = entity.getTypeAppointment().getType();
+        this.statusAppointment = entity.getStatusAppointment().getStatus();
     }
 
     public Appointment toEntity() {
@@ -38,7 +42,14 @@ public class AppointmentDTO {
         barber.setId(barberId);
         User client = new User();
         client.setId(clientId);
-        return new Appointment(id, new Date(this.millis), client, barber, TypeAppointment.valueOf(typeAppointment));
+        return new Appointment(
+            id, 
+            new Date(this.millis), 
+            client, 
+            barber, 
+            TypeAppointment.valueOf(typeAppointment), 
+            StatusAppointment.valueOf(statusAppointment)
+        );
     }
 
     public Long getId() {
@@ -47,6 +58,14 @@ public class AppointmentDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStatusAppointment() {
+        return statusAppointment;
+    }
+
+    public void setStatusAppointment(String statusAppointment) {
+        this.statusAppointment = statusAppointment;
     }
 
     public String getTypeAppointment() {
