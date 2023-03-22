@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { getUserLocalStorage } from '../contexts/AuthProvider/util';
+import { getAuthStateLocalStorage } from '../contexts/AuthProvider/util';
 
 const PrivateRoute = () => {
-  const user = getUserLocalStorage();
+  const auth = getAuthStateLocalStorage();
 
-  if (!user) {
+  if (!auth) {
     return <Navigate to="/login" />;
   }
 

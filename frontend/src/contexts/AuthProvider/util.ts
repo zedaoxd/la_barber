@@ -1,16 +1,16 @@
 import { Api } from '../../services/api';
 import { IUser } from './types';
 
-export function setUserLocalStorage(user: IUser | null) {
+export function setAuthStateLocalStorage(user: IUser | null) {
   localStorage.setItem('u', JSON.stringify(user));
 }
 
-export function getUserLocalStorage() {
+export function getAuthStateLocalStorage() {
   const user = localStorage.getItem('u');
   return user ? JSON.parse(user) ?? null : null;
 }
 
-export function removeUserLocalStorage() {
+export function removeAuthStateLocalStorage() {
   localStorage.removeItem('u');
 }
 

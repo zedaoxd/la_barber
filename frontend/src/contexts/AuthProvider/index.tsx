@@ -1,31 +1,31 @@
 import { createContext, useEffect, useState } from 'react';
-import { IAuthProvider, IContext, IUser } from './types';
+import { IAuthProvider, IAuthState, IContext, IUser } from './types';
 import {
-  getUserLocalStorage,
+  getAuthStateLocalStorage,
   LoginRequest,
   RegisterRequest,
-  removeUserLocalStorage,
-  setUserLocalStorage,
+  removeAuthStateLocalStorage,
+  setAuthStateLocalStorage,
 } from './util';
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
-  const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [authState, setAuthState] = useState<IAuthState | undefined>(undefined);
 
   useEffect(() => {
-    const user = getUserLocalStorage();
+    const auth = getAuthStateLocalStorage();
 
-    if (user) {
-      setUser(user);
+    if (auth) {
+      setAuthState(auth);
     }
   }, []);
 
   async function authenticate(email: string, password: string) {
     const data = await LoginRequest(email, password);
 
-    setUser(data);
-    setUserLocalStorage(data);
+    setAuthState(data);
+    setAuthStateLocalStorage(data);
   }
 
   async function signup(name: string, email: string, password: string) {
@@ -34,12 +34,12 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }
 
   function logout() {
-    setUser(undefined);
-    removeUserLocalStorage();
+    setAuthState(undefined);
+    removeAuthStateLocalStorage();
   }
 
   return (
-    <AuthContext.Provider value={{ user, authenticate, logout, signup }}>
+    <AuthContext.Provider value={{ authState, authenticate, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );

@@ -2,23 +2,24 @@ package br.com.bruno.labarber.dtos;
 
 public class AuthenticationResponseDTO {
     
-    private Long id;
+    private UserDTO user;
     private String token;
+
 
     public AuthenticationResponseDTO() {
     }
 
-    public AuthenticationResponseDTO(String token, Long id) {
-        this.id = id;
+    public AuthenticationResponseDTO(String token, UserDTO dto) {
+        this.user = dto;
         this.token = token;
     }
 
-    public Long getId() {
-        return id;
+    public UserDTO getUser() {
+        return this.user;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public String getToken() {

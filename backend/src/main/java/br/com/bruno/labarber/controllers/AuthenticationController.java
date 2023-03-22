@@ -29,8 +29,8 @@ public class AuthenticationController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<AuthenticationResponseDTO> register(@Valid @RequestBody UserInsertDTO userInsertDTO) {
-        var user = authenticationService.register(userInsertDTO);
-        URI uri = URI.create("/users/" + user.getId());
-        return ResponseEntity.created(uri).body(user);
+        AuthenticationResponseDTO authenticationResponseDTO = authenticationService.register(userInsertDTO);
+        URI uri = URI.create("/users/" + authenticationResponseDTO.getUser().getId());
+        return ResponseEntity.created(uri).body(authenticationResponseDTO);
     }
 }

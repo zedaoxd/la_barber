@@ -9,7 +9,9 @@ import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { user } = useAuth();
+  const { authState } = useAuth();
+
+  console.log(authState);
 
   function handleMenu() {
     setShowMenu(prev => !prev);
@@ -45,9 +47,9 @@ const Navbar = () => {
               </a>
             </li>
             <li>
-              <NavLink to={user?.email ? '/profile' : '/login'}>
+              <NavLink to={!!authState?.user ? '/profile' : '/login'}>
                 <PersonIcon />
-                {user?.email ? user?.email : 'Login'}
+                {authState?.user ? authState.user.email : 'Login'}
               </NavLink>
             </li>
           </ul>

@@ -2,6 +2,7 @@ package br.com.bruno.labarber.services;
 
 import java.util.List;
 
+import br.com.bruno.labarber.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,7 +42,7 @@ public class AuthenticationService {
         user.setType(TypeUser.CLIENT);
         user = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
-        return new AuthenticationResponseDTO(jwtToken, user.getId());
+        return new AuthenticationResponseDTO(jwtToken, new UserDTO(user));
     }
 
     public AuthenticationResponseDTO login(UserLoginDTO authenticationRequest) {
@@ -54,6 +55,6 @@ public class AuthenticationService {
         User user = userRepository.findByEmail(authenticationRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         var jwtToken = jwtService.generateToken(user);
-        return new AuthenticationResponseDTO(jwtToken, user.getId());
+        return new AuthenticationResponseDTO(jwtToken, new UserDTO(user));
     }
 }
