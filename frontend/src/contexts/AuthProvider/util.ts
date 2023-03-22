@@ -1,7 +1,7 @@
 import { Api } from '../../services/api';
-import { IUser } from './types';
+import { IAuthState } from './types';
 
-export function setAuthStateLocalStorage(user: IUser | null) {
+export function setAuthStateLocalStorage(user: IAuthState | null) {
   localStorage.setItem('u', JSON.stringify(user));
 }
 
@@ -16,8 +16,8 @@ export function removeAuthStateLocalStorage() {
 
 export async function LoginRequest(email: string, password: string) {
   try {
-    const request = await Api.post('/auth/login', { email, password });
-    return request.data;
+    const request = await Api.post<IAuthState>('/auth/login', { email, password });
+    return request;
   } catch (e) {
     return null;
   }

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { IAuthProvider, IAuthState, IContext, IUser } from './types';
+import { IAuthProvider, IAuthState, IContext } from './types';
 import {
   getAuthStateLocalStorage,
   LoginRequest,
@@ -22,10 +22,15 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   }, []);
 
   async function authenticate(email: string, password: string) {
-    const data = await LoginRequest(email, password);
+    const response = await LoginRequest(email, password);
 
-    setAuthState(data);
-    setAuthStateLocalStorage(data);
+    if (response?.status !== 200) {
+      return;
+    }
+
+    setAuthState(response.data);
+    setAuthStateLocalStorage(response.data);
+    return response;
   }
 
   async function signup(name: string, email: string, password: string) {

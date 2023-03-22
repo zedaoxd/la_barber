@@ -13,7 +13,10 @@ export interface IAuthState {
 
 export interface IContext {
   authState: IAuthState | undefined;
-  authenticate: (email: string, password: string) => Promise<void>;
+  authenticate: (
+    email: string,
+    password: string,
+  ) => Promise<AxiosResponse<IAuthState, any> | undefined>;
   signup: (name: string, email: string, password: string) => Promise<AxiosResponse<any, any> | any>;
   logout: () => void;
 }
