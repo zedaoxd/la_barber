@@ -1,14 +1,13 @@
 import React from 'react';
 import { AuthProvider } from './AuthProvider';
+import QueryProvider from './QueryProvider';
 
-interface IAppContext {
-  children: React.ReactNode;
-}
-
-const AppContext = ({ children }: IAppContext) => {
+const AppContext = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <AuthProvider>{children}</AuthProvider>
+      <QueryProvider>
+        <AuthProvider>{children}</AuthProvider>
+      </QueryProvider>
     </>
   );
 };

@@ -4,9 +4,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Container, GridHours, HourSelected, Form, ButtonConfirm, Wanings } from './styles';
 import { useState } from 'react';
+import { getAllBarbers } from '../../../services/userService';
+import { useQuery } from '@tanstack/react-query';
+import { User } from '../../../@types/user';
 
 type AppointmentSelectForm = {
-  employee: Employee;
+  barber: User;
   date: number;
   time: string;
 };
@@ -27,13 +30,13 @@ const hoursAvailable = [
   { hour: '20:00', select: false },
 ];
 
-const employees = [
-  { id: '1', name: 'João' },
-  { id: '2', name: 'Maria' },
-  { id: '3', name: 'José' },
-];
+// const employees = [
+//   { id: '1', name: 'João' },
+//   { id: '2', name: 'Maria' },
+//   { id: '3', name: 'José' },
+// ];
 
-type Employee = typeof employees[0];
+// type Employee = typeof employees[0];
 
 const Appointment = () => {
   const { handleSubmit, control, setValue, watch } = useForm<AppointmentSelectForm>();
@@ -41,6 +44,8 @@ const Appointment = () => {
 
   const today = new Date();
   const sevenDaysFromNow = new Date(today.setDate(today.getDate() + 7));
+
+  const { data: barbers } = useQuery(['barbers'], getAllBarbers);
 
   const handleSelectHour = (hour: string) => {
     if (hour === selectedHour) {
@@ -62,7 +67,7 @@ const Appointment = () => {
 
       <Form autoComplete="off" onSubmit={handleSubmit(handleSubmitForm)}>
         <Controller
-          name="employee"
+          name="barber"
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
@@ -102,17 +107,16 @@ const Appointment = () => {
                   },
                 }),
               }}
-              options={employees}
+              options={barbers || []}
               classNamePrefix="select-employee"
-              //onChange={value => setValue('employee', value as Employee)}
               getOptionLabel={emp => emp.name}
-              getOptionValue={emp => emp.id}
+              getOptionValue={emp => emp.id.toString()}
               placeholder="Selecione um funcionário"
             />
           )}
         />
 
-        {watch('employee') && (
+        {watch('barber') && (
           <Controller
             control={control}
             name="date"
