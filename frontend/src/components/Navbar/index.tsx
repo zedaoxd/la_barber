@@ -11,8 +11,6 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { authState } = useAuth();
 
-  console.log(authState);
-
   function handleMenu() {
     setShowMenu(prev => !prev);
   }

@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 import { ContainerAvatar, SideBar } from './styles';
 
 const SideBarProfile = () => {
-  const { logout } = useAuth();
+  const { logout, authState } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -19,9 +19,9 @@ const SideBarProfile = () => {
     <SideBar>
       <ContainerAvatar>
         <div>
-          <h3>B</h3>
+          <h3>{authState?.user?.name?.charAt(0).toUpperCase()}</h3>
         </div>
-        <p>Bruno Lessa</p>
+        <p>{authState?.user?.name}</p>
       </ContainerAvatar>
 
       <nav>
