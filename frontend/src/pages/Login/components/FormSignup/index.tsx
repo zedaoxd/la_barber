@@ -1,6 +1,8 @@
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 interface IFormSignupInputs {
   name: string;
@@ -17,10 +19,11 @@ const FormSignup = () => {
     getValues,
     formState: { errors },
   } = useForm<IFormSignupInputs>();
-
+  const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
 
   function onSubmit({ name, email, password }: IFormSignupInputs) {
+    setLoading(true);
     signup(name, email, password).then(r => {
       if (r?.status === 201) {
         Swal.fire({
@@ -37,6 +40,7 @@ const FormSignup = () => {
           confirmButtonText: 'Ok',
         });
       }
+      setLoading(false);
     });
   }
 
@@ -102,7 +106,9 @@ const FormSignup = () => {
         />
         <span>{errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}</span>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">
+          {loading ? <ClipLoader color="#fff" size={20} /> : 'Cadastrar'}
+        </button>
       </form>
     </div>
   );
