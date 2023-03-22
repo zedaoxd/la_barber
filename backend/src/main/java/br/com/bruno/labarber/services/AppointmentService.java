@@ -17,7 +17,7 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public List<AppointmentDTO> findByDate(Date date) {
+    public List<AppointmentDTO> findByDate(Date date, Long barberId) {
         Date dateStart = new Date(date.getTime());
         Date dateEnd = new Date(date.getTime());
 
@@ -34,7 +34,7 @@ public class AppointmentService {
         calendar.set(Calendar.SECOND, 59);
         dateEnd = calendar.getTime();
 
-        return appointmentRepository.findByDateBetween(dateStart, dateEnd)
+        return appointmentRepository.findByDateBetweenAndBarberId(dateStart, dateEnd, barberId)
             .stream()
             .map(AppointmentDTO::new)
             .toList();

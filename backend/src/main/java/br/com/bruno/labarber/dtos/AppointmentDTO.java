@@ -34,7 +34,7 @@ public class AppointmentDTO {
         barber.setId(barberId);
         User client = new User();
         client.setId(clientId);
-        return new Appointment(id, new Date(this.millis), barber, client);
+        return new Appointment(id, new Date(this.millis), client, barber);
     }
 
     public Long getId() {

@@ -3,10 +3,14 @@ import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Container, GridHours, HourSelected, Form, ButtonConfirm, Wanings } from './styles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAllBarbers } from '../../../services/userService';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { User } from '../../../@types/user';
+import { findByDateAndBarber, save } from '../../../services/appointmentService';
+import { ClipLoader } from 'react-spinners';
+import useAuth from '../../../hooks/useAuth';
+import { AppointmentType } from '../../../@types/appointment';
 
 type AppointmentSelectForm = {
   barber: User;
@@ -14,38 +18,71 @@ type AppointmentSelectForm = {
   time: string;
 };
 
-const hoursAvailable = [
-  { hour: '08:00', select: false },
-  { hour: '09:00', select: false },
-  { hour: '10:00', select: false },
-  { hour: '11:00', select: false },
-  { hour: '12:00', select: true },
-  { hour: '13:00', select: true },
-  { hour: '14:00', select: false },
-  { hour: '15:00', select: false },
-  { hour: '16:00', select: false },
-  { hour: '17:00', select: true },
-  { hour: '18:00', select: false },
-  { hour: '19:00', select: false },
-  { hour: '20:00', select: false },
-];
-
-// const employees = [
-//   { id: '1', name: 'João' },
-//   { id: '2', name: 'Maria' },
-//   { id: '3', name: 'José' },
-// ];
-
-// type Employee = typeof employees[0];
+type HourAvailable = {
+  hour: string;
+  select: boolean;
+};
 
 const Appointment = () => {
-  const { handleSubmit, control, setValue, watch } = useForm<AppointmentSelectForm>();
+  const { handleSubmit, control, getValues, setValue, watch } = useForm<AppointmentSelectForm>();
   const [selectedHour, setSeletectHour] = useState('');
+  const { authState } = useAuth();
+  const [hours, setHours] = useState<HourAvailable[]>([]);
 
   const today = new Date();
   const sevenDaysFromNow = new Date(today.setDate(today.getDate() + 7));
 
   const { data: barbers } = useQuery(['barbers'], getAllBarbers);
+  const {
+    data: appointments,
+    isLoading,
+    refetch,
+  } = useQuery(
+    ['hoursAvailable'],
+    () => findByDateAndBarber(getValues('date'), getValues('barber.id')),
+    {
+      enabled: false,
+    },
+  );
+  const { mutate } = useMutation(save, {
+    onSuccess: () => {
+      alert('Agendamento realizado com sucesso!');
+    },
+  });
+
+  const handleDateChange = (date: Date) => {
+    setValue('date', date.getTime());
+    refetch();
+  };
+
+  useEffect(() => {
+    setHours(prev => {
+      const newHours = [
+        { hour: '08:00', select: false },
+        { hour: '09:00', select: false },
+        { hour: '10:00', select: false },
+        { hour: '11:00', select: false },
+        { hour: '12:00', select: false },
+        { hour: '13:00', select: false },
+        { hour: '14:00', select: false },
+        { hour: '15:00', select: false },
+        { hour: '16:00', select: false },
+        { hour: '17:00', select: false },
+        { hour: '18:00', select: false },
+        { hour: '19:00', select: false },
+      ];
+
+      if (appointments)
+        for (const app of appointments) {
+          const hour = new Date(app.millis).getHours();
+          const index = newHours.findIndex(h => h.hour === `${hour}:00`);
+          if (index === -1) newHours[index].select = false;
+          else newHours[index].select = true;
+        }
+      console.log(appointments);
+      return newHours;
+    });
+  }, [appointments, getValues('barber.id')]);
 
   const handleSelectHour = (hour: string) => {
     if (hour === selectedHour) {
@@ -58,7 +95,15 @@ const Appointment = () => {
   };
 
   const handleSubmitForm = (data: AppointmentSelectForm) => {
+    data = { ...data, date: new Date(data.date).setHours(Number(data.time.split(':')[0])) };
+    const appointment: AppointmentType = {
+      id: null,
+      barberId: data.barber.id,
+      clientId: authState?.user?.id!,
+      millis: data.date,
+    };
     console.log(data);
+    mutate(appointment);
   };
 
   return (
@@ -129,7 +174,8 @@ const Appointment = () => {
                 wrapperClassName="date-picker"
                 minDate={new Date()}
                 maxDate={sevenDaysFromNow}
-                onChange={(d: Date) => setValue('date', d.getTime())}
+                onChange={handleDateChange}
+                filterDate={date => date.getDay() !== 0 && date.getDay() !== 6}
                 disabledKeyboardNavigation
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Selecione uma data"
@@ -141,21 +187,24 @@ const Appointment = () => {
         {watch('date') && (
           <>
             <h2>Hórarios disponiveis</h2>
-            <GridHours>
-              {hoursAvailable.map(h => (
-                <div key={h.hour} className={`btn-hour-container`}>
-                  <HourSelected
-                    selected={h.hour === selectedHour}
-                    type="button"
-                    onClick={() => handleSelectHour(h.hour)}
-                    disabled={h.select}
-                    value={h.hour}
-                  >
-                    {h.hour}
-                  </HourSelected>
-                </div>
-              ))}
-            </GridHours>
+            {isLoading && <ClipLoader />}
+            {appointments && (
+              <GridHours>
+                {hours.map(h => (
+                  <div key={h.hour} className="btn-hour-container">
+                    <HourSelected
+                      selected={h.hour === selectedHour}
+                      type="button"
+                      onClick={() => handleSelectHour(h.hour)}
+                      disabled={h.select}
+                      value={h.hour}
+                    >
+                      {h.hour}
+                    </HourSelected>
+                  </div>
+                ))}
+              </GridHours>
+            )}
           </>
         )}
 

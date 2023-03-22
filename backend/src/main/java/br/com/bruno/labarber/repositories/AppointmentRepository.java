@@ -11,7 +11,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     
     boolean existsByDateAndBarberId(Date date, Long barberId);
 
-    List<Appointment> findByDate(Date date);
+    //List<Appointment> findByDate(Date date);
 
-    List<Appointment> findByDateBetween(Date start, Date end);
+    //List<Appointment> findByDateBetween(Date start, Date end);
+
+    List<Appointment> findByDateBetweenAndBarberId(Date start, Date end, Long barberId);
 }
