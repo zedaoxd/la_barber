@@ -1,7 +1,7 @@
 package br.com.bruno.labarber.enums;
 
 public enum TypeUser {
-    CLIENT("client"), BARBER("barber");
+    CLIENT("CLIENT"), BARBER("BARBER");
 
     private final String type;
 

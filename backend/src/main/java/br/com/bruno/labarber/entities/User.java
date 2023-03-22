@@ -25,6 +25,7 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type_user")
     private TypeUser type;
 
     @ManyToMany(fetch = FetchType.EAGER)
