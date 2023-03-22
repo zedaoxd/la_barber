@@ -5,7 +5,7 @@ export function setAuthStateLocalStorage(user: IAuthState | null) {
   localStorage.setItem('u', JSON.stringify(user));
 }
 
-export function getAuthStateLocalStorage() {
+export function getAuthStateLocalStorage(): IAuthState | null {
   const user = localStorage.getItem('u');
   return user ? JSON.parse(user) ?? null : null;
 }

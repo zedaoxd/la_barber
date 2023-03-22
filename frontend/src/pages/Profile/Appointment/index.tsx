@@ -2,7 +2,15 @@ import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Container, GridHours, HourSelected, Form, ButtonConfirm, Wanings } from './styles';
+import {
+  Container,
+  GridHours,
+  HourSelected,
+  Form,
+  ButtonConfirm,
+  Wanings,
+  LoaderContainer,
+} from './styles';
 import { useEffect, useState } from 'react';
 import { getAllBarbers } from '../../../services/userService';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -11,6 +19,7 @@ import { findByDateAndBarber, save } from '../../../services/appointmentService'
 import { ClipLoader } from 'react-spinners';
 import useAuth from '../../../hooks/useAuth';
 import { AppointmentType } from '../../../@types/appointment';
+import Swal from 'sweetalert2';
 
 type AppointmentSelectForm = {
   barber: User;
@@ -24,7 +33,8 @@ type HourAvailable = {
 };
 
 const Appointment = () => {
-  const { handleSubmit, control, getValues, setValue, watch } = useForm<AppointmentSelectForm>();
+  const { handleSubmit, control, getValues, setValue, watch, reset } =
+    useForm<AppointmentSelectForm>({});
   const [selectedHour, setSeletectHour] = useState('');
   const { authState } = useAuth();
   const [hours, setHours] = useState<HourAvailable[]>([]);
@@ -46,7 +56,22 @@ const Appointment = () => {
   );
   const { mutate } = useMutation(save, {
     onSuccess: () => {
-      alert('Agendamento realizado com sucesso!');
+      Swal.fire({
+        icon: 'success',
+        title: 'Tudo certo!',
+        text: 'Seu agendamento foi realizado com sucesso!',
+        timer: 3000,
+      });
+      reset();
+      setSeletectHour('');
+      setValue('time', '');
+    },
+    onError: () => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ocorreu um erro ao realizar seu agendamento!',
+      });
     },
   });
 
@@ -75,11 +100,13 @@ const Appointment = () => {
       if (appointments)
         for (const app of appointments) {
           const hour = new Date(app.millis).getHours();
-          const index = newHours.findIndex(h => h.hour === `${hour}:00`);
+          const index = newHours.findIndex(
+            h => h.hour === `${hour.toString().padStart(2, '0')}:00`,
+          );
           if (index === -1) newHours[index].select = false;
           else newHours[index].select = true;
         }
-      console.log(appointments);
+
       return newHours;
     });
   }, [appointments, getValues('barber.id')]);
@@ -102,7 +129,7 @@ const Appointment = () => {
       clientId: authState?.user?.id!,
       millis: data.date,
     };
-    console.log(data);
+
     mutate(appointment);
   };
 
@@ -154,6 +181,7 @@ const Appointment = () => {
               }}
               options={barbers || []}
               classNamePrefix="select-employee"
+              isClearable
               getOptionLabel={emp => emp.name}
               getOptionValue={emp => emp.id.toString()}
               placeholder="Selecione um funcionário"
@@ -187,8 +215,12 @@ const Appointment = () => {
         {watch('date') && (
           <>
             <h2>Hórarios disponiveis</h2>
-            {isLoading && <ClipLoader />}
-            {appointments && (
+            {isLoading && (
+              <LoaderContainer>
+                <ClipLoader color="#fff" size={50} />
+              </LoaderContainer>
+            )}
+            {appointments && watch('barber') && (
               <GridHours>
                 {hours.map(h => (
                   <div key={h.hour} className="btn-hour-container">
