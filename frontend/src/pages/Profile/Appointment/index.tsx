@@ -20,11 +20,13 @@ import { ClipLoader } from 'react-spinners';
 import useAuth from '../../../hooks/useAuth';
 import { AppointmentType } from '../../../@types/appointment';
 import Swal from 'sweetalert2';
+import { Watch } from '@mui/icons-material';
 
 type AppointmentSelectForm = {
   barber: User;
   date: number;
   time: string;
+  typeAppointment: { value: 'BARBA' | 'CORTE' | 'BARBA_CORTE'; label: string };
 };
 
 type HourAvailable = {
@@ -128,6 +130,7 @@ const Appointment = () => {
       barberId: data.barber.id,
       clientId: authState?.user?.id!,
       millis: data.date,
+      typeAppointment: data.typeAppointment.value,
     };
 
     mutate(appointment);
@@ -190,6 +193,63 @@ const Appointment = () => {
         />
 
         {watch('barber') && (
+          <Controller
+            name="typeAppointment"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                styles={{
+                  control: (provided, state) => ({
+                    ...provided,
+                    border: 'none',
+                    borderRadius: '4px',
+                    height: '40px',
+                    padding: '0 10px',
+                    fontSize: '16px',
+                    color: '#666',
+                    '&:hover': {
+                      borderColor: 'none',
+                    },
+                  }),
+                  placeholder: (provided, state) => ({
+                    ...provided,
+                    color: '#999',
+                  }),
+                  singleValue: (provided, state) => ({
+                    ...provided,
+                    color: '#666',
+                  }),
+                  menu: (provided, state) => ({
+                    ...provided,
+                    zIndex: 999,
+                  }),
+                  option: (provided, state) => ({
+                    ...provided,
+                    color: '#666',
+                    backgroundColor: state.isSelected ? '#eee' : '#fff',
+                    '&:hover': {
+                      backgroundColor: '#eee',
+                    },
+                  }),
+                }}
+                options={[
+                  { value: 'CORTE', label: 'Corte' },
+                  { value: 'BARBA', label: 'Barba' },
+                  { value: 'BARBA_CORTE', label: 'Corte e Barba' },
+                ]}
+                classNamePrefix="select-employee"
+                isClearable
+                getOptionLabel={emp => emp.label}
+                getOptionValue={emp => emp.value}
+                placeholder="Selecione um serviço"
+              />
+            )}
+          />
+        )}
+
+        {watch('typeAppointment') && (
           <Controller
             control={control}
             name="date"

@@ -2,6 +2,7 @@ package br.com.bruno.labarber.entities;
 
 import java.util.Date;
 
+import br.com.bruno.labarber.enums.TypeAppointment;
 import jakarta.persistence.*;
 
 @Entity(name = "appointments")
@@ -15,6 +16,10 @@ public class Appointment {
     @Column(name = "column_date")
     private Date date;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_appointment")
+    private TypeAppointment typeAppointment;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
@@ -26,11 +31,12 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(Long id, Date date, User client, User barber) {
+    public Appointment(Long id, Date date, User client, User barber, TypeAppointment typeAppointment) {
         this.id = id;
         this.date = date;
         this.client = client;
         this.barber = barber;
+        this.typeAppointment = typeAppointment;
     }
 
     public Long getId() {
@@ -47,6 +53,14 @@ public class Appointment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public TypeAppointment getTypeAppointment() {
+        return typeAppointment;
+    }
+
+    public void setTypeAppointment(TypeAppointment typeAppointment) {
+        this.typeAppointment = typeAppointment;
     }
 
     public User getClient() {

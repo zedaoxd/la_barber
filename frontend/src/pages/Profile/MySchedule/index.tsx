@@ -25,7 +25,7 @@ const MySchedule = () => {
       status: 'Falta',
     },
     {
-      id: 3,
+      id: 4,
       date: '01/03/2023',
       time: '19:00',
       type: 'Corte',

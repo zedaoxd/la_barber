@@ -3,4 +3,5 @@ export type AppointmentType = {
   millis: number;
   barberId: number;
   clientId: number;
+  typeAppointment: 'BARBA' | 'CORTE' | 'BARBA_CORTE';
 };
