@@ -48,6 +48,10 @@ public class AppointmentService {
         Appointment entity = dto.toEntity();
         entity.setId(null);
 
+        if (appointmentRepository.existsByClientIdAndStatus(entity.getClient().getId(), StatusAppointment.PENDING)) {
+            throw new RuntimeException("You already have an appointment pending");
+        }
+        
         if (appointmentRepository.existsByDateAndBarberId(entity.getDate(), entity.getBarber().getId())) {
             throw new RuntimeException("The hour is not available");
         }
@@ -62,5 +66,15 @@ public class AppointmentService {
             .stream()
             .map(AppointmentDTO::new)
             .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public AppointmentDTO getAppointmentPending(Long userId) {
+        List<StatusAppointment> list = List.of(StatusAppointment.PENDING);
+        return appointmentRepository.findByClientIdAndStatusIn(userId, list)
+            .stream()
+            .map(AppointmentDTO::new)
+            .findFirst()
+            .orElse(null);
     }
 }

@@ -20,7 +20,7 @@ import { ClipLoader } from 'react-spinners';
 import useAuth from '../../../hooks/useAuth';
 import { AppointmentType } from '../../../@types/appointment';
 import Swal from 'sweetalert2';
-import { Watch } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 type AppointmentSelectForm = {
   barber: User;
@@ -40,6 +40,7 @@ const Appointment = () => {
   const [selectedHour, setSeletectHour] = useState('');
   const { authState } = useAuth();
   const [hours, setHours] = useState<HourAvailable[]>([]);
+  const navigate = useNavigate();
 
   const today = new Date();
   const sevenDaysFromNow = new Date(today.setDate(today.getDate() + 7));
@@ -67,6 +68,7 @@ const Appointment = () => {
       reset();
       setSeletectHour('');
       setValue('time', '');
+      navigate('/profile/myschedule');
     },
     onError: () => {
       Swal.fire({
@@ -130,6 +132,7 @@ const Appointment = () => {
       barberId: data.barber.id,
       clientId: authState?.user?.id!,
       millis: data.date,
+      statusAppointment: 'PENDING',
       typeAppointment: data.typeAppointment.value,
     };
 

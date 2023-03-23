@@ -33,6 +33,11 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.findHistory(userId));
     }
 
+    @GetMapping(value = "/pending/{userId}")
+    public ResponseEntity<AppointmentDTO> getAppointmentPending(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(appointmentService.getAppointmentPending(userId));
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentDTO dto) {
         dto = appointmentService.save(dto);

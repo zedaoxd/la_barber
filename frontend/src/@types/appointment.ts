@@ -4,4 +4,5 @@ export type AppointmentType = {
   barberId: number;
   clientId: number;
   typeAppointment: 'BARBA' | 'CORTE' | 'BARBA_CORTE';
+  statusAppointment: 'PENDING' | 'CANCELED' | 'FINISHED' | 'MISSED';
 };
