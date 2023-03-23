@@ -61,7 +61,7 @@ public class WebSecurityConfiguration {
             .authorizeHttpRequests()
             .requestMatchers(PUBLIC_MATCHERS).permitAll()
             // TODO: lembrar de por autenticação depois
-            .anyRequest().permitAll()
+            .anyRequest().authenticated()
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
