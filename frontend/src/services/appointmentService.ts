@@ -12,6 +12,13 @@ export const getAppointmentPending = async (userId?: number) => {
   return (await Api.get<AppointmentType | null>(`/appointments/pending/${userId}`)).data;
 };
 
+export const getHistory = async (userId?: number) => {
+  if (!userId) {
+    return null;
+  }
+  return (await Api.get<AppointmentType[]>(`/appointments/history/${userId}`)).data;
+};
+
 export const save = async (appointment: AppointmentType) => {
   return (await Api.post<AppointmentType>('/appointments', appointment)).data;
 };
