@@ -23,7 +23,7 @@ public class Appointment {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status_appointment")
-    private StatusAppointment statusAppointment;
+    private StatusAppointment status;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -42,7 +42,7 @@ public class Appointment {
         this.client = client;
         this.barber = barber;
         this.typeAppointment = typeAppointment;
-        this.statusAppointment = statusAppointment;
+        this.status = statusAppointment;
     }
 
     public Long getId() {
@@ -61,12 +61,12 @@ public class Appointment {
         this.date = date;
     }
 
-    public StatusAppointment getStatusAppointment() {
-        return statusAppointment;
+    public StatusAppointment getStatus() {
+        return status;
     }
 
-    public void setStatusAppointment(StatusAppointment statusAppointment) {
-        this.statusAppointment = statusAppointment;
+    public void setStatusAppointment(StatusAppointment status) {
+        this.status = status;
     }
 
     public TypeAppointment getTypeAppointment() {

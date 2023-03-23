@@ -34,7 +34,7 @@ public class AppointmentDTO {
         this.barberId = entity.getBarber().getId();
         this.clientId = entity.getClient().getId();
         this.typeAppointment = entity.getTypeAppointment().getType();
-        this.statusAppointment = entity.getStatusAppointment().getStatus();
+        this.statusAppointment = entity.getStatus().getStatus();
     }
 
     public Appointment toEntity() {

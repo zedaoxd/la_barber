@@ -28,6 +28,11 @@ public class AppointmentController {
         return ResponseEntity.ok(appointmentService.findByDate(new Date(millis), barberId));
     }
 
+    @GetMapping(value = "/history/{userId}")
+    public ResponseEntity<List<AppointmentDTO>> findHistory(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(appointmentService.findHistory(userId));
+    }
+
     @PostMapping
     public ResponseEntity<AppointmentDTO> save(@RequestBody AppointmentDTO dto) {
         dto = appointmentService.save(dto);

@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bruno.labarber.dtos.AppointmentDTO;
 import br.com.bruno.labarber.entities.Appointment;
+import br.com.bruno.labarber.enums.StatusAppointment;
 import br.com.bruno.labarber.repositories.AppointmentRepository;
 
 @Service
@@ -17,6 +19,7 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
+    @Transactional(readOnly = true)
     public List<AppointmentDTO> findByDate(Date date, Long barberId) {
         Date dateStart = new Date(date.getTime());
         Date dateEnd = new Date(date.getTime());
@@ -40,6 +43,7 @@ public class AppointmentService {
             .toList();
     }
 
+    @Transactional
     public AppointmentDTO save(AppointmentDTO dto) {
         Appointment entity = dto.toEntity();
         entity.setId(null);
@@ -51,4 +55,12 @@ public class AppointmentService {
         return new AppointmentDTO(appointmentRepository.save(entity));
     }
     
+    @Transactional(readOnly = true)
+    public List<AppointmentDTO> findHistory(Long userId) {
+        List<StatusAppointment> list = List.of(StatusAppointment.FINISHED, StatusAppointment.CANCELED, StatusAppointment.MISSED);
+        return appointmentRepository.findByClientIdAndStatusIn(userId, list)
+            .stream()
+            .map(AppointmentDTO::new)
+            .toList();
+    }
 }
