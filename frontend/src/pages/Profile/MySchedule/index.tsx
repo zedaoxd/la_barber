@@ -1,3 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
+import useAuth from '../../../hooks/useAuth';
+import { getAppointmentPending } from '../../../services/appointmentService';
 import { Appointment, AppointmentList, Container } from './styles';
 import Time from './Time';
 
@@ -32,12 +35,25 @@ const MySchedule = () => {
       status: 'Cancelado',
     },
   ];
+  const { authState } = useAuth();
+  const { data: appointment } = useQuery(['getAppointmentPending'], () =>
+    getAppointmentPending(authState?.user?.id),
+  );
 
   return (
     <Container>
       <Appointment>
         <h2>Horário marcado</h2>
-        <Time status="Agendado" />
+        {appointment ? (
+          <Time
+            status={appointment?.statusAppointment}
+            type={appointment?.typeAppointment}
+            date={new Date(appointment?.millis!).toLocaleDateString()}
+            time={new Date(appointment?.millis!).toLocaleTimeString().slice(0, 5)}
+          />
+        ) : (
+          <p>Nenhum horário marcado</p>
+        )}
       </Appointment>
 
       <AppointmentList>

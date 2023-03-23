@@ -10,7 +10,7 @@ type StatusProps = {
 const Status = ({ status }: StatusProps) => {
   return (
     <>
-      {status === 'Agendado' && (
+      {status === 'PENDING' && (
         <>
           <AccessAlarmIcon color="primary" />
           Agendado

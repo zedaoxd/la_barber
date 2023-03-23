@@ -45,13 +45,13 @@ const Time = ({
         </p>
       </LeftContainer>
       <RightContainer>
-        <p>Tipo: {type}</p>
+        <p>Tipo: {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
         <p>
           Situação: <Status status={status} />
         </p>
       </RightContainer>
 
-      {status === 'Agendado' && (
+      {status === 'PENDING' && (
         <DeleteButton onClick={onClickDelete}>
           <DeleteIcon />
           Cancelar
