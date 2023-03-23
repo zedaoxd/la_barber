@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
 import { getAppointmentPending } from '../../../services/appointmentService';
-import { Appointment, AppointmentList, Container } from './styles';
+import { Appointment, AppointmentList, Container, NoAppointment } from './styles';
 import Time from './Time';
 
 const MySchedule = () => {
@@ -46,13 +46,15 @@ const MySchedule = () => {
         <h2>Horário marcado</h2>
         {appointment ? (
           <Time
-            status={appointment?.statusAppointment}
-            type={appointment?.typeAppointment}
-            date={new Date(appointment?.millis!).toLocaleDateString()}
-            time={new Date(appointment?.millis!).toLocaleTimeString().slice(0, 5)}
+            status={appointment.statusAppointment}
+            type={appointment.typeAppointment}
+            date={new Date(appointment.millis).toLocaleDateString()}
+            time={new Date(appointment.millis).toLocaleTimeString().slice(0, 5)}
           />
         ) : (
-          <p>Nenhum horário marcado</p>
+          <NoAppointment>
+            <p>Nenhum horário marcado</p>
+          </NoAppointment>
         )}
       </Appointment>
 

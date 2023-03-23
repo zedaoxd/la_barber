@@ -28,3 +28,22 @@ export const AppointmentList = styled.div`
     text-transform: uppercase;
   }
 `;
+
+export const NoAppointment = styled.div`
+  width: 100%;
+  height: 100px;
+  background: #e6e6f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid #e6e6f0;
+
+  p {
+    font-size: 20px;
+    color: #6a6180;
+  }
+`;

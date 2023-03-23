@@ -45,7 +45,9 @@ const Time = ({
         </p>
       </LeftContainer>
       <RightContainer>
-        <p>Tipo: {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
+        <p>
+          Tipo: {(type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).replace('_', ' e ')}
+        </p>
         <p>
           Situação: <Status status={status} />
         </p>
