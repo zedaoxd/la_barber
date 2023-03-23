@@ -1,5 +1,5 @@
 cors:
-  origins: ${CORS}
+  origins: "*"
 jwt:
   duration: ${JWT_DURATION}
   secret:
