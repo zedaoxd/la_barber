@@ -41,6 +41,10 @@ export const ContainerProfile = styled.div`
   border-radius: 8px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
 
+  @media (max-width: 1070px) {
+    height: auto;
+  }
+
   @media (max-width: 768px) {
     width: 95%;
     margin: 0 1rem;
