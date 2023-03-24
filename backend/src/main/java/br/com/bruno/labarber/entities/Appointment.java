@@ -22,7 +22,6 @@ public class Appointment {
     private TypeAppointment typeAppointment;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_appointment")
     private StatusAppointment status;
 
     @ManyToOne

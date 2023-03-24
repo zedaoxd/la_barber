@@ -79,7 +79,7 @@ public class AppointmentService {
     }
 
     public void changeStatusToCanceled (Long id) {
-        Appointment appointment = appointmentRepository.getReferenceById(id);
+        Appointment appointment = appointmentRepository.findById(id).orElse(null);
         appointment.setStatusAppointment(StatusAppointment.CANCELED);
         appointmentRepository.save(appointment);
     }
