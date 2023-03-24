@@ -21,6 +21,7 @@ const MySchedule = () => {
         <h2>Horário marcado</h2>
         {appointment ? (
           <Time
+            id={appointment.id!}
             status={appointment.statusAppointment}
             type={appointment.typeAppointment}
             date={new Date(appointment.millis).toLocaleDateString()}
@@ -40,6 +41,7 @@ const MySchedule = () => {
           appointments.map(app => (
             <Time
               key={app.id}
+              id={app.id!}
               date={new Date(app.millis).toLocaleDateString()}
               status={app.statusAppointment}
               time={new Date(app.millis).toLocaleTimeString().slice(0, 5)}

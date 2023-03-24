@@ -22,3 +22,7 @@ export const getHistory = async (userId?: number) => {
 export const save = async (appointment: AppointmentType) => {
   return (await Api.post<AppointmentType>('/appointments', appointment)).data;
 };
+
+export const deleteAppointment = async (appointmentId: number) => {
+  return (await Api.delete<void>(`/appointments/${appointmentId}`)).data;
+};

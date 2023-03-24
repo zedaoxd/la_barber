@@ -4,12 +4,15 @@ import Status from './Status';
 
 import { Container, DeleteButton, LeftContainer, RightContainer } from './styles';
 import swal from 'sweetalert';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteAppointment } from '../../../../services/appointmentService';
 
 type TimeProps = {
   date?: string;
   time?: string;
   type?: string;
   status?: string;
+  id: number;
 };
 
 const Time = ({
@@ -17,15 +20,27 @@ const Time = ({
   time = '10:00',
   type = 'Corte e Barba',
   status = 'Agendado',
+  id,
 }: TimeProps) => {
-  const onClickDelete = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: (id: number) => deleteAppointment(id),
+    onSuccess: () => {
+      swal('Cancelado!', 'Seu agendamento foi cancelado com sucesso!', 'success');
+      queryClient.invalidateQueries(['getAppointmentPending']);
+      queryClient.invalidateQueries(['getHistory']);
+    },
+  });
+
+  const onClickDelete = (id: number) => {
     swal({
       title: 'Tem certeza que deseja cancelar o agendamento?',
       icon: 'warning',
       buttons: ['Não', 'Sim, pode cancelar!'],
     }).then(value => {
       if (value) {
-        swal('Cancelado!', 'Seu agendamento foi cancelado com sucesso!', 'success');
+        mutate(id);
       }
     });
   };
@@ -54,7 +69,7 @@ const Time = ({
       </RightContainer>
 
       {status === 'PENDING' && (
-        <DeleteButton onClick={onClickDelete}>
+        <DeleteButton onClick={() => onClickDelete(id)}>
           <DeleteIcon />
           Cancelar
         </DeleteButton>

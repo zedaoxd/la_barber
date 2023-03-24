@@ -77,4 +77,10 @@ public class AppointmentService {
             .findFirst()
             .orElse(null);
     }
+
+    public void changeStatusToCanceled (Long id) {
+        Appointment appointment = appointmentRepository.getReferenceById(id);
+        appointment.setStatusAppointment(StatusAppointment.CANCELED);
+        appointmentRepository.save(appointment);
+    }
 }

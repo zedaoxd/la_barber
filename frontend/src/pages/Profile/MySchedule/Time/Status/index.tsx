@@ -16,19 +16,19 @@ const Status = ({ status }: StatusProps) => {
           Agendado
         </>
       )}
-      {status === 'Falta' && (
+      {status === 'MISSED' && (
         <>
           <CloseIcon color="error" />
           Falta
         </>
       )}
-      {status === 'Finalizado' && (
+      {status === 'FINISHED' && (
         <>
           <CheckIcon color="success" />
           Finalizado
         </>
       )}
-      {status === 'Cancelado' && (
+      {status === 'CANCELED' && (
         <>
           <DoNotDisturbIcon color="error" />
           Cancelado

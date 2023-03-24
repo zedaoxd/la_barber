@@ -16,8 +16,6 @@ Api.interceptors.request.use(
   config => {
     const auth = getAuthStateLocalStorage();
 
-    console.log(process.env.REACT_APP_BACKEND_URL);
-
     if (auth?.token) {
       const tokenData = jwtDecode<TokenData>(auth.token);
       if (tokenData.exp * 1000 < new Date().getTime()) {
