@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { getAuthStateLocalStorage } from '../contexts/AuthProvider/util';
 
 export const Api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080',
+  baseURL: 'https://labarber-production.up.railway.app',
 });
 
 type TokenData = {
